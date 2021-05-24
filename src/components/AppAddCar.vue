@@ -1,0 +1,159 @@
+<template>
+  <form @submit.prevent="addCar">
+    <div>
+      <label for="brand">Brand</label>
+
+      <input
+        id="brand"
+        name="brand"
+        type="text"
+        required="required"
+        v-model="car.brand"
+      />
+    </div>
+    <div>
+      <label for="model">Model</label>
+
+      <input id="model" name="model" type="text" v-model="car.model" />
+    </div>
+    <div>
+      <label for="year">Year</label>
+
+      <select id="year" name="year" required="required" v-model="car.year">
+        <option v-for="year in years" :value="year" :key="year">{{
+          year
+        }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="speed">Maximum Speed</label>
+
+      <input
+        id="speed"
+        name="speed"
+        type="number"
+        required="required"
+        v-model="car.maxSpeed"
+      />
+    </div>
+    <div>
+      <label for="doors">Number of Doors</label>
+
+      <input
+        id="doors"
+        name="doors"
+        type="number"
+        required="required"
+        v-model="car.numberOfDoors"
+      />
+    </div>
+    <div>
+      <label class="col-4 col-form-label">Engine</label>
+
+      <div>
+        <label class="form-check-label">
+          <input
+            name="engine"
+            type="radio"
+            required="required"
+            value="electric"
+            v-model="car.engine"
+          />
+          Electric
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            name="engine"
+            type="radio"
+            required="required"
+            value="petrol"
+            v-model="car.engine"
+          />
+          Petrol
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            name="engine"
+            type="radio"
+            required="required"
+            value="hybrid"
+            v-model="car.engine"
+          />
+          Hybrid
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            name="engine"
+            type="radio"
+            required="required"
+            value="diesel"
+            v-model="car.engine"
+          />
+          Diesel
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label>
+        <input
+          name="automatic"
+          type="checkbox"
+          value="true"
+          v-model="car.isAutomatic"
+        />
+        Automatic
+      </label>
+    </div>
+
+    <div>
+      <button name="submit" type="submit" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</template>
+
+<script>
+import CarsService from "../services/CarsService";
+
+export default {
+  data() {
+    return {
+      years: Array(29)
+        .fill(1990)
+        .map((n, i) => n + i),
+      car: {
+        brand: "",
+        model: "",
+        maxSpeed: 200,
+        year: 1990,
+        isAutomatic: false,
+        numberOfDoors: 4,
+        engine: "diesel",
+      },
+    };
+  },
+  methods: {
+    addCar() {
+      CarsService.addCar(this.car)
+        .then((success) => {
+          this.redirectToCars();
+          console.log(success);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    redirectToCars() {
+      this.$router.push({ name: "cars" });
+    },
+  },
+};
+</script>

@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav"><router-link to="/">Cars</router-link> |</div>
+    <div id="nav">
+      <router-link to="/">Cars</router-link> |
+      <router-link to="/add">Add Car</router-link>
+    </div>
     <router-view />
   </div>
 </template>

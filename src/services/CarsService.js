@@ -14,6 +14,10 @@ class CarsService {
 
     return data;
   }
+
+  async addCar(car) {
+    return this.client.post("cars", car);
+  }
 }
 
 export default new CarsService();
