@@ -10,6 +10,7 @@
         <th>Maximum speed</th>
         <th>Automatic/Manual</th>
         <th>Engine</th>
+        <th></th>
       </tr>
       <tr v-for="car in cars" :key="car.id">
         <td>{{ car.brand }}</td>
@@ -19,6 +20,11 @@
         <td>{{ car.maxSpeed }}</td>
         <td>{{ car.isAutomatic ? "Automatic" : "Manual" }}</td>
         <td>{{ car.engine }}</td>
+        <td>
+          <router-link :to="{ name: 'edit', params: { id: car.id } }"
+            >Edit</router-link
+          >
+        </td>
       </tr>
     </table>
   </div>
@@ -33,6 +39,7 @@ export default {
       cars: null,
     };
   },
+
   async created() {
     const cars = await CarsService.getAll();
     this.cars = cars;

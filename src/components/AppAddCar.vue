@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addCar" @reset="resetForm">
+  <form @submit.prevent="submitForm" @reset="resetForm">
     <div>
       <label for="brand">Brand</label>
 
@@ -145,9 +145,34 @@ export default {
     };
   },
 
+  created() {
+    CarsService.getCar(this.$route.params.id).then((response) => {
+      this.car = response.data;
+    });
+  },
+
   methods: {
+    submitForm() {
+      if (this.car.id) {
+        this.editCar();
+      } else {
+        this.addCar();
+      }
+    },
+
     addCar() {
       CarsService.addCar(this.car)
+        .then((success) => {
+          this.redirectToCars();
+          console.log(success);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    editCar() {
+      CarsService.editCar(this.car)
         .then((success) => {
           this.redirectToCars();
           console.log(success);

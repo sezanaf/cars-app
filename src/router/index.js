@@ -21,6 +21,11 @@ const routes = [
     component: AddCar,
     name: "add",
   },
+  {
+    path: "/edit/:id",
+    component: AddCar,
+    name: "edit",
+  },
 ];
 
 const router = new VueRouter({

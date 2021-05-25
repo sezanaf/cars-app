@@ -15,8 +15,16 @@ class CarsService {
     return data;
   }
 
-  async addCar(car) {
+  addCar(car) {
     return this.client.post("cars", car);
+  }
+
+  getCar(id) {
+    return this.client.get(`cars/${id}`);
+  }
+
+  editCar(car) {
+    return this.client.put(`cars/${car.id}`, car);
   }
 }
 
