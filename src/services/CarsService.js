@@ -26,6 +26,10 @@ class CarsService {
   editCar(car) {
     return this.client.put(`cars/${car.id}`, car);
   }
+
+  deleteCar(id) {
+    return this.client.delete(`cars/${id}`);
+  }
 }
 
 export default new CarsService();

@@ -146,9 +146,10 @@ export default {
   },
 
   created() {
-    CarsService.getCar(this.$route.params.id).then((response) => {
-      this.car = response.data;
-    });
+    this.$route.params.id &&
+      CarsService.getCar(this.$route.params.id).then((response) => {
+        this.car = response.data;
+      });
   },
 
   methods: {

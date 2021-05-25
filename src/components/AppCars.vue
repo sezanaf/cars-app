@@ -24,6 +24,9 @@
           <router-link :to="{ name: 'edit', params: { id: car.id } }"
             >Edit</router-link
           >
+          <button class="btn btn-danger" @click="deleteCar(car.id)">
+            Delete
+          </button>
         </td>
       </tr>
     </table>
@@ -43,6 +46,18 @@ export default {
   async created() {
     const cars = await CarsService.getAll();
     this.cars = cars;
+  },
+
+  methods: {
+    deleteCar(car) {
+      let response = confirm("Are you sure?");
+      if (response) {
+        CarsService.deleteCar(car).then((success) => {
+          this.cars = this.cars.filter((el) => el.id !== car);
+          console.log(success);
+        });
+      }
+    },
   },
 };
 </script>
