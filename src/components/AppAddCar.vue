@@ -116,7 +116,15 @@
       <button name="submit" type="submit" class="btn btn-primary">
         Submit
       </button>
-      <button name="reset" type="reset" class="btn btn-default">Reset</button>
+      <button name="reset" type="reset" class="btn btn-secondary">Reset</button>
+      <button
+        name="preview"
+        type="button"
+        @click="preview"
+        class="btn btn-info"
+      >
+        Preview
+      </button>
     </div>
   </form>
 </template>
@@ -165,6 +173,18 @@ export default {
         numberOfDoors: "",
         engine: "",
       };
+    },
+
+    preview() {
+      alert(`
+        Brand: ${this.car.brand}
+        Model: ${this.car.model}
+        Year: ${this.car.year}
+        Maximum Speed: ${this.car.maxSpeed}
+        Number of Doors: ${this.car.numberOfDoors}
+        Engine: ${this.car.model}
+        ${this.car.isAutomatic ? "Automatic" : "Manual"}
+      `);
     },
   },
 };
