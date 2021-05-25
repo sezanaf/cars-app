@@ -7,14 +7,22 @@
         id="brand"
         name="brand"
         type="text"
-        required="required"
+        required
         v-model="car.brand"
+        minlength="2"
       />
     </div>
     <div>
       <label for="model">Model</label>
 
-      <input id="model" name="model" type="text" v-model="car.model" />
+      <input
+        id="model"
+        name="model"
+        type="text"
+        minlength="2"
+        required
+        v-model="car.model"
+      />
     </div>
     <div>
       <label for="year">Year</label>
@@ -28,13 +36,7 @@
     <div>
       <label for="speed">Maximum Speed</label>
 
-      <input
-        id="speed"
-        name="speed"
-        type="number"
-        required="required"
-        v-model="car.maxSpeed"
-      />
+      <input id="speed" name="speed" type="number" v-model="car.maxSpeed" />
     </div>
     <div>
       <label for="doors">Number of Doors</label>
@@ -43,7 +45,7 @@
         id="doors"
         name="doors"
         type="number"
-        required="required"
+        required
         v-model="car.numberOfDoors"
       />
     </div>
@@ -55,7 +57,7 @@
           <input
             name="engine"
             type="radio"
-            required="required"
+            required
             value="electric"
             v-model="car.engine"
           />
@@ -67,7 +69,7 @@
           <input
             name="engine"
             type="radio"
-            required="required"
+            required
             value="petrol"
             v-model="car.engine"
           />
@@ -79,7 +81,7 @@
           <input
             name="engine"
             type="radio"
-            required="required"
+            required
             value="hybrid"
             v-model="car.engine"
           />
@@ -91,7 +93,7 @@
           <input
             name="engine"
             type="radio"
-            required="required"
+            required
             value="diesel"
             v-model="car.engine"
           />
